@@ -1,0 +1,31 @@
+{
+    "name": "@fmllang/tokenizer",
+    "version": "0.0.15",
+    "description": "Tokenizer for Forms Markup Language (FML)",
+    "main": "main.js",
+    "scripts": {
+        "build": "tsc"
+    },
+    "author": "Cassandra Thompson",
+    "license": "MIT",
+    "declaration": true,
+    "types": "lib/main.d.ts",
+    "files": [
+        "lib/"
+    ],
+    "dependencies": {
+        "@types/node": "^22.6.0",
+        "tsx": "^4.19.1",
+        "typescript": "^5.6.2"
+    },
+    "exports": {
+        ".": {
+            "import": "./lib/main.js",
+            "require": "./lib/main.js"
+        },
+        "./lib": {
+            "import": "./lib/main.js",
+            "require": "./lib/main.js"
+        }
+    }
+}
