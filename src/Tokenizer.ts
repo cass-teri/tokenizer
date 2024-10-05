@@ -216,12 +216,18 @@ export class Tokenizer {
         if (this.IsAtEnd()) {
             throw new Error(`Unterminated markdown on line ${this.line}: ${this.source.substring(this.start)}`)
         }
-        this.Advance()
-        this.Advance()
+
+        if(!this.MatchNext("}")) {
+            throw new Error(`Unterminated markdown on line ${this.line}: ${this.source.substring(this.start)}`)
+        }
+        if(!this.MatchNext("#")) {
+            throw new Error(`Unterminated markdown on line ${this.line}: ${this.source.substring(this.start)}`)
+        }
 
         let value = this.source.substring(this.start + 2, this.current - 2)
         value = value.trim().split("\n").map((line) => line.trim()).join("\n")
         this.AddToken(TokenType.MARKDOWN, value)
         this.line += value.split("\n").length + 1
+        this.start = this.current
     }
 }

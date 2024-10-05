@@ -4,6 +4,7 @@
     "description": "Tokenizer for Forms Markup Language (FML)",
     "main": "main.js",
     "scripts": {
+        "dev": "tsx src/main.ts",
         "build": "tsc"
     },
     "author": "Cassandra Thompson",
