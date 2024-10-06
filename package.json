@@ -29,5 +29,8 @@
             "import": "./lib/main.js",
             "require": "./lib/main.js"
         }
+    },
+    "devDependencies": {
+        "@types/chai": "^5.0.0"
     }
 }

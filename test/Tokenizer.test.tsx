@@ -1,10 +1,7 @@
 import { Tokenizer } from '../src/Tokenizer'
 import { TokenType } from '../src/TokenType'
-import { Result } from '../src/Result'
-import { Token } from '../src/Token'
 import {describe, it} from "node:test"
 import {expect} from "chai"
-import exp = require("node:constants")
 
 describe('Tokenizer', () => {
     it('Tokenizes single character tokens', () => {
@@ -144,7 +141,7 @@ describe('Tokenizer', () => {
     it ("Should not choke on an escaped quote", () => {
         const tokenizer = new Tokenizer('form(){ text (id="before\\"after") }')
         const result = tokenizer.Tokenize()
-        if (result.isError) {
+        if (result.IsError()) {
             console.error(result.error)
         }
         if(result.value == null) {
