@@ -140,7 +140,7 @@ export class Tokenizer {
             this.Advance()
         }
 
-        if (this.PeekNext() == '.' && this.IsDigit(this.PeekNext())) {
+        if (this.PeekNext() == '.' && this.IsDigit(this.PeekNext(1))) {
             this.Advance()
             while (this.IsDigit(this.PeekNext())) {
                 this.Advance()
@@ -157,6 +157,12 @@ export class Tokenizer {
 
     private ReadString() {
         while (this.PeekNext() != '"' && !this.IsAtEnd()) {
+            let next = this.PeekNext()
+            console.log(`[${next}]`)
+            if (this.PeekNext() == '\\' && this.PeekNext(1) == '"') {
+                this.Advance(); // Skip the escape character
+            }
+
             if (this.PeekNext() == '\n') {
                 this.line++
             }
@@ -164,11 +170,12 @@ export class Tokenizer {
         }
 
         if (this.IsAtEnd()) {
-            throw new Error("Unterminated string")
+            throw new Error("Unterminated string on line " + this.line)
         }
 
-        this.Advance()
+        this.Advance(); // Consume the closing quote
         let value = this.source.substring(this.start + 1, this.current - 1)
+        value = value.replaceAll('\\"', '"')
         this.AddToken(TokenType.STRING, value)
     }
 

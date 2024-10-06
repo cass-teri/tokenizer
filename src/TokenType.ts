@@ -54,7 +54,7 @@ export const TokenType = {
     LET: 36,
     CONST: 37,
 
-    EOL: 38,
-    EOF: 39,
+    EOL: 99,
+    EOF: 100,
 
 }
